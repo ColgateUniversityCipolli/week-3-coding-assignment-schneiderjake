@@ -48,10 +48,46 @@ to this \texttt{.Rnw} file.\\
 \textbf{Hint:} You may find the \verb|%in%| operator and the \verb|setdiff()| function to be helpful.\\
 
 \textbf{Solution:} 
-% Write your answer and explanations here.
+I installed the Primes \citep{primes} package to use for creating a list of my prime numbers. From there I created a loop that multlipled each prime number together ensuring that i and j did not equal each other. I then stored this loop in an empty vector. From there I compared that to the original table that we were given using the \texttt{setdiff} function to compare the tables and replace the wrong number which was 75 and I replaced it with 74. 
 
 <<size="scriptsize", warning=F, message=F>>=
-# Copy your solution code here.
+install.packages("primes", repos= "https://cran.rstudio.com/")
+library(primes)
+
+prime.numbers <- generate_primes(max = 100) #this creates our vector of prime number that we will be using
+
+
+
+prime.products <- c() #this is our empty vector that stores our prime products created from the loop 
+
+for (i in 1:length(prime.numbers)) {  
+  for (j in 1:length(prime.numbers)) {
+    if( i != j){
+      product <- prime.numbers[i] * prime.numbers[j]
+      
+      if (!is.na(product) && product < 100) {  
+        prime.products <- c(prime.products, product)
+      }
+    }
+  }
+}
+prime.products <- sort(prime.products)
+
+
+given.numbers <- c( 6, 10, 14, 15, 21,
+                    22, 26, 33, 34, 35,
+                    38, 39, 46, 51, 55,
+                    57, 58, 62, 65, 69,
+                    75, 77, 82, 85, 86,
+                    87, 91, 93, 94, 95)
+
+incorrect_number <- setdiff(given.numbers, prime.products)  
+
+correct_number <- setdiff(prime.products, given.numbers)  
+
+cat("Incorrect Number in Table:", incorrect_number, "\n")
+
+cat("Correct Number to Replace It:", correct_number, "\n")
 @
 \end{enumerate}
 
