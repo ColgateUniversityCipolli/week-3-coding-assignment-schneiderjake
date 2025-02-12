@@ -98,7 +98,7 @@ to this \texttt{.Rnw} file.\\
 \textbf{Hint:} You may find the \verb|%in%| operator and the \verb|setdiff()| function to be helpful.\\
 
 \textbf{Solution:} 
-I installed the Primes \citep{primes} package to use for creating a list of my prime numbers. From there I created a loop that multlipled each prime number together ensuring that i and j did not equal each other. I then stored this loop in an empty vector. From there I compared that to the original table that we were given using the \texttt{setdiff} function to compare the tables and replace the wrong number which was 75 and I replaced it with 74. 
+I installed the Primes package \citep{primes} to use for creating a list of my prime numbers. From there I created a loop that multiplied each prime number together ensuring that i and j did not equal each other and that the product was less than 100. After storing those products in an empty vector I compared that to the original table that we were given using the \texttt{setdiff} function to compare the vectors and replace the wrong number which was 75 with 74. 75 is wrong because its prime factorization is 3*5*5 which includes a repeated prime number violating our unique prime product rule. 74, the replacement, is a unique prime number because its prime factors are 2*37 making it fit our given conidition.
 
 \begin{knitrout}\scriptsize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -109,7 +109,7 @@ I installed the Primes \citep{primes} package to use for creating a list of my p
 ## package 'primes' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-## 	C:\Users\schne\AppData\Local\Temp\RtmpCmpzPt\downloaded_packages
+## 	C:\Users\schne\AppData\Local\Temp\RtmpOIZhQb\downloaded_packages
 \end{verbatim}
 \begin{alltt}
 \hlkwd{library}\hldef{(primes)}
@@ -131,8 +131,9 @@ I installed the Primes \citep{primes} package to use for creating a list of my p
     \hldef{\}}
   \hldef{\}}
 \hldef{\}}
-\hldef{prime.products} \hlkwb{<-} \hlkwd{sort}\hldef{(prime.products)}
-
+\hldef{prime.products} \hlkwb{<-} \hlkwd{unique}\hldef{(}\hlkwd{sort}\hldef{(prime.products))}
+\hlcom{#used this to sort my products and make sure I didn't have an duplicates}
+\hlcom{#I also used the print function in my console with the unique prime products as a gut to make sure my loop worked}
 
 \hldef{given.numbers} \hlkwb{<-} \hlkwd{c}\hldef{(} \hlnum{6}\hldef{,} \hlnum{10}\hldef{,} \hlnum{14}\hldef{,} \hlnum{15}\hldef{,} \hlnum{21}\hldef{,}
                     \hlnum{22}\hldef{,} \hlnum{26}\hldef{,} \hlnum{33}\hldef{,} \hlnum{34}\hldef{,} \hlnum{35}\hldef{,}
@@ -156,6 +157,9 @@ I installed the Primes \citep{primes} package to use for creating a list of my p
 \begin{verbatim}
 ## Correct Number to Replace It: 74
 \end{verbatim}
+\begin{alltt}
+\hlcom{#this cat function is used to print the incorrect and correct number}
+\end{alltt}
 \end{kframe}
 \end{knitrout}
 \end{enumerate}
